@@ -1,34 +1,38 @@
 // components/Navbar.tsx
 "use client";
 
+import { metaData } from "@/app/config";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { ThemeSwitch } from "./theme-provider";
+
+const navLinks = {
+  "/": { name: "Home" },
+  "/about": { name: "About" },
+  "/projects": { name: "Projects" },
+};
 
 export default function Navbar() {
-  const pathname = usePathname();
-
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/projects", label: "Projects" },
-  ];
-
   return (
-    <nav className="bg-gray-800 p-4">
-      <ul className="flex space-x-6">
-        {navLinks.map((link) => (
-          <li key={link.href}>
+    <nav className="lg:mb-16 mb-12 py-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between">
+        <div className="flex items-center">
+          <Link href="/" className="text-3xl font-semibold">
+            {metaData.title}
+          </Link>
+        </div>
+        <div className="flex flex-row gap-4 mt-6 md:mt-0 md:ml-auto items-center">
+          {Object.entries(navLinks).map(([path, { name }]) => (
             <Link
-              href={link.href}
-              className={`text-white hover:underline ${
-                pathname === link.href ? "font-bold underline" : ""
-              }`}
+              key={path}
+              href={path}
+              className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative"
             >
-              {link.label}
+              {name}
             </Link>
-          </li>
-        ))}
-      </ul>
+          ))}
+          <ThemeSwitch />
+        </div>
+      </div>
     </nav>
   );
 }
