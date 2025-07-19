@@ -3,7 +3,6 @@
 
 import { metaData } from "@/app/config";
 import Link from "next/link";
-import { ThemeSwitchButton } from "./theme-provider";
 
 const navLinks = {
   "/": { name: "Home" },
@@ -31,7 +30,6 @@ export default function Navbar() {
               {name}
             </Link>
           ))}
-          {/* <ThemeSwitchButton /> */}
         </div>
       </div>
     </nav>
