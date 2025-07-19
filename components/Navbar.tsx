@@ -3,12 +3,13 @@
 
 import { metaData } from "@/app/config";
 import Link from "next/link";
-import { ThemeSwitch } from "./theme-provider";
+import { ThemeSwitchButton } from "./theme-provider";
 
 const navLinks = {
   "/": { name: "Home" },
-  "/about": { name: "About" },
   "/projects": { name: "Projects" },
+  "/notes": { name: "Notes" },
+  "/about": { name: "About" },
 };
 
 export default function Navbar() {
@@ -30,7 +31,7 @@ export default function Navbar() {
               {name}
             </Link>
           ))}
-          <ThemeSwitch />
+          {/* <ThemeSwitchButton /> */}
         </div>
       </div>
     </nav>

@@ -13,61 +13,20 @@ export function ThemeProvider({
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
 
-const storageKey = "theme-preference";
-
-export const ThemeSwitch = () => {
-  const { setTheme } = useTheme();
+export const ThemeSwitchButton = () => {
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState<"light" | "dark">("light");
-
-  // 获取本地主题或系统主题
-  const getInitialTheme = (): "light" | "dark" => {
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem(storageKey) as
-        | "light"
-        | "dark"
-        | null;
-      if (stored) return stored;
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-    }
-    return "light";
-  };
-
-  // 应用主题到 DOM 和状态
-  const applyTheme = (theme: "light" | "dark") => {
-    document.documentElement.classList.remove("bg-light", "bg-dark");
-    document.documentElement.classList.add(`bg-${theme}`);
-    setCurrentTheme(theme);
-    setTheme(theme);
-  };
 
   useEffect(() => {
     setMounted(true);
-
-    const initialTheme = getInitialTheme();
-    applyTheme(initialTheme);
-
-    // 监听系统主题变化
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = () => {
-      const newTheme = mediaQuery.matches ? "dark" : "light";
-      localStorage.setItem(storageKey, newTheme);
-      applyTheme(newTheme);
-    };
-    mediaQuery.addEventListener("change", handleChange);
-
-    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
+  const isDark = resolvedTheme === "dark";
+
   const toggleTheme = () => {
-    const newTheme = currentTheme === "light" ? "dark" : "light";
-    localStorage.setItem(storageKey, newTheme);
-    applyTheme(newTheme);
+    setTheme(isDark ? "light" : "dark");
   };
 
-  // 防止 hydration mismatch 错误
   if (!mounted) {
     return (
       <Sun
@@ -76,8 +35,6 @@ export const ThemeSwitch = () => {
       />
     );
   }
-
-  const isDark = currentTheme === "dark";
 
   return (
     <button
