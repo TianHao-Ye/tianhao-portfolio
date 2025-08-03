@@ -1,14 +1,25 @@
 import ContactLinks from "@/components/ContactLinks";
 import ResumeSection from "@/components/ResumeSection";
+import { metaData } from "../config";
+import Image from "next/image";
+import WorkExperienceCard from "@/components/WorkExperienceCard";
 
 export default function AboutPage() {
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-6">About Me</h1>
-      <ContactLinks />
-
+      <div className="flex flex-col items-center gap-4 mb-8">
+        <Image
+          src="/images/portrait.png"
+          alt={metaData.name}
+          width={200}
+          height={200}
+          className="rounded-full shadow-lg border border-gray-300 dark:border-gray-700"
+        />
+        <p>Software Engineer | UniMelb M.IT (2023), B.Sc (2021)</p>
+        <ContactLinks />
+      </div>
       {/* Professional Summary */}
-      <ResumeSection title="Professional Summary">
+      <ResumeSection title="About">
         <p>
           Motivated Full Stack Developer with 1 year of experience in web/mobile
           development and testing. Proficient in React Native, Next.js, Symfony,
@@ -19,7 +30,7 @@ export default function AboutPage() {
       </ResumeSection>
 
       {/* Technical Skills */}
-      <ResumeSection title="Technical Skills">
+      <ResumeSection title="Technical Stack">
         <ul className="list-disc pl-6 space-y-1">
           <li>
             <strong>Languages:</strong> TypeScript, JavaScript, Java, Python,
@@ -41,40 +52,31 @@ export default function AboutPage() {
 
       {/* Work Experience */}
       <ResumeSection title="Work Experience">
-        <div>
-          <h3 className="text-lg font-semibold">
-            Front-End Developer - Growild Technology
-          </h3>
-          <p className="text-sm text-gray-500">Apr 2025 - Present | Sydney</p>
-          <ul className="list-disc pl-6 mt-2 space-y-1">
-            <li>
-              Built mobile game interfaces using Cocos Creator and TypeScript.
-            </li>
-            <li>
-              Collaborated with designers to deliver smooth gameplay
-              experiences.
-            </li>
-            <li>Participated in Agile sprints and daily stand-ups.</li>
-          </ul>
-        </div>
+        <WorkExperienceCard
+          title="Front-End Developer"
+          jobType="Intern->Full Time"
+          time="Apr 2025 - Present"
+          company="Growild Technology"
+          position="Sydney"
+          points={[
+            "Built mobile game interfaces using Cocos Creator and TypeScript.",
+            "Collaborated with designers to deliver smooth gameplay experiences.",
+            "Participated in Agile sprints and daily stand-ups.",
+          ]}
+        />
 
-        <div className="mt-4">
-          <h3 className="text-lg font-semibold">
-            Front-End Developer (Part-Time) - Tanggram Pty Ltd
-          </h3>
-          <p className="text-sm text-gray-500">
-            Mar 2024 - Dec 2024 | Melbourne
-          </p>
-          <ul className="list-disc pl-6 mt-2 space-y-1">
-            <li>
-              Enhanced React Native apps (Redux, Redux-Saga) for smoother UX.
-            </li>
-            <li>Maintained company website (Next.js) and improved SEO.</li>
-            <li>
-              Added data visualization features to admin system (Symfony5).
-            </li>
-          </ul>
-        </div>
+        <WorkExperienceCard
+          title="Front-End Developer"
+          jobType="Intern->Part Time"
+          time="Mar 2024 - Dec 2024"
+          company="Tanggram Pty Ltd"
+          position="Melbourne"
+          points={[
+            "Enhanced React Native apps (Redux, Redux-Saga) for smoother UX.",
+            "Maintained company website (Next.js) and improved SEO.",
+            "Added data visualization features to admin system (Symfony5).",
+          ]}
+        />
       </ResumeSection>
 
       {/* Education */}

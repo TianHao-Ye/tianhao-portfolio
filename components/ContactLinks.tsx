@@ -1,5 +1,6 @@
 "use client";
 
+import { socialLinks } from "@/app/config";
 import { FaLinkedin, FaGithub, FaPhone } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
@@ -8,7 +9,7 @@ export default function ContactLinks() {
     <div className="flex space-x-4 mb-8 text-2xl">
       {/* Email */}
       <a
-        href="mailto:yetianhaowork@gmail.com"
+        href={socialLinks.email}
         className="hover:text-blue-500 transition-colors"
         title="Email"
       >
@@ -17,7 +18,7 @@ export default function ContactLinks() {
 
       {/* LinkedIn */}
       <a
-        href="https://www.linkedin.com/in/tianhao-ye-9957a9225/"
+        href={socialLinks.linkedin}
         target="_blank"
         className="hover:text-blue-600 transition-colors"
         title="LinkedIn"
@@ -27,7 +28,7 @@ export default function ContactLinks() {
 
       {/* GitHub */}
       <a
-        href="https://github.com/TianHao-Ye"
+        href={socialLinks.github}
         target="_blank"
         className="hover:text-gray-700 transition-colors"
         title="GitHub"
@@ -37,7 +38,7 @@ export default function ContactLinks() {
 
       {/* Phone (just icon, no text) */}
       <a
-        href="tel:0452150286"
+        href={socialLinks.telephone}
         className="hover:text-green-500 transition-colors"
         title="Phone"
       >

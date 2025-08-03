@@ -2,12 +2,13 @@
 
 import { metaData } from "@/app/config";
 import Link from "next/link";
+import { FaHome, FaProjectDiagram, FaBook, FaUser } from "react-icons/fa";
 
 const navLinks = [
-  { path: "/", name: "Home" },
-  { path: "/projects", name: "Projects" },
-  { path: "/notes", name: "Notes" },
-  { path: "/about", name: "About" },
+  { path: "/", name: "Home", icon: <FaHome /> },
+  { path: "/projects", name: "Projects", icon: <FaProjectDiagram /> },
+  { path: "/notes", name: "Notes", icon: <FaBook /> },
+  { path: "/about", name: "About", icon: <FaUser /> },
 ];
 
 export default function Navbar() {
@@ -21,19 +22,20 @@ export default function Navbar() {
               href="/"
               className="text-2xl font-bold tracking-tight hover:opacity-80 transition"
             >
-              {metaData.title}
+              {metaData.name}
             </Link>
           </div>
 
           {/* Right: Navigation Links */}
           <div className="hidden md:flex space-x-6">
-            {navLinks.map(({ path, name }) => (
+            {navLinks.map(({ path, name, icon }) => (
               <Link
                 key={path}
                 href={path}
-                className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition"
+                className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition"
               >
-                {name}
+                {icon}
+                <span>{name}</span>
               </Link>
             ))}
           </div>
