@@ -3,6 +3,7 @@ import ResumeSection from "@/components/ResumeSection";
 import { metaData } from "../config";
 import Image from "next/image";
 import WorkExperienceCard from "@/components/WorkExperienceCard";
+import GroupedSkillBar from "@/components/GroupedSkillBar";
 
 export default function AboutPage() {
   return (
@@ -30,7 +31,7 @@ export default function AboutPage() {
       </ResumeSection>
 
       {/* Technical Skills */}
-      <ResumeSection title="Technical Stack">
+      {/* <ResumeSection title="Technical Stack">
         <ul className="list-disc pl-6 space-y-1">
           <li>
             <strong>Languages:</strong> TypeScript, JavaScript, Java, Python,
@@ -48,6 +49,41 @@ export default function AboutPage() {
             (GitHub Actions)
           </li>
         </ul>
+      </ResumeSection> */}
+
+      <ResumeSection title="Technical Stack">
+        <div className="space-y-6">
+          <GroupedSkillBar
+            category="Language"
+            skills={[
+              { name: "TypeScript", percentage: 20, color: "#3178C6" },
+              { name: "JavaScript", percentage: 20, color: "#F7DF1E" },
+              { name: "Java", percentage: 15, color: "#ED8B00" },
+              { name: "Python", percentage: 15, color: "#3776AB" },
+              { name: "PHP", percentage: 15, color: "#777BB4" },
+              { name: "C", percentage: 15, color: "#A8B9CC" },
+            ]}
+          />
+
+          <GroupedSkillBar
+            category="Front-End"
+            skills={[
+              { name: "React.js", percentage: 35, color: "#61DAFB" },
+              { name: "Next.js", percentage: 25, color: "#4DB33D" },
+              { name: "React Native", percentage: 25, color: "#61DAFB" },
+              { name: "Cocos Creator", percentage: 15, color: "#FF7F50" },
+            ]}
+          />
+
+          <GroupedSkillBar
+            category="Back-End/ DB"
+            skills={[
+              { name: "PHP (Symfony)", percentage: 40, color: "#777BB4" },
+              { name: "MySQL", percentage: 30, color: "#00618A" },
+              { name: "MongoDB", percentage: 30, color: "#4DB33D" },
+            ]}
+          />
+        </div>
       </ResumeSection>
 
       {/* Work Experience */}
